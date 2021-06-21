@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Combat Training</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "Gun_TrainingBBGun"]</xpath>
+					<value>
+						<ThingDef ParentName="BaseGunWithQuality">
+							<defName>Gun_TrainingBBGun</defName>
+							<label>bolt-action bb gun</label>
+							<description>Pneumatic bolt-action BB gun.\n\nUsed for training ranged combat skills.</description>
+							<techLevel>Industrial</techLevel>
+							<smeltable>true</smeltable>
+							<tickerType>Never</tickerType>
+							<thingCategories>
+							  <li>RangedTrainingWeapons</li>
+							</thingCategories>
+							<graphicData>
+								<texPath>Things/Item/Equipment/WeaponRanged/2A1Sporterised</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<soundInteract>Interact_Rifle</soundInteract>
+							<recipeMaker>
+								<workSpeedStat>SmithingSpeed</workSpeedStat>
+								<workSkill>Crafting</workSkill>
+								<effectWorking>Smith</effectWorking>
+								<soundWorking>Recipe_Smith</soundWorking>
+								<recipeUsers>
+									<li>ElectricSmithy</li>
+									<li>FueledSmithy</li>
+									<li>TableMachining</li>
+								</recipeUsers>
+								<unfinishedThingDef>UnfinishedGun</unfinishedThingDef>
+								<researchPrerequisite>GasOperation</researchPrerequisite>
+								<skillRequirements>
+									<Crafting>3</Crafting>
+								</skillRequirements>
+							</recipeMaker>
+							<weaponTags>
+							  <li>TrainingWeapons</li>
+							</weaponTags>
+							<statBases>
+								<WorkToMake>38000</WorkToMake>
+								<Mass>2.8</Mass>
+								<AccuracyTouch>0.56</AccuracyTouch>
+								<AccuracyShort>0.68</AccuracyShort>
+								<AccuracyMedium>0.46</AccuracyMedium>
+								<AccuracyLong>0.24</AccuracyLong>
+							  <RangedWeapon_Cooldown>1.4</RangedWeapon_Cooldown>
+							</statBases>
+							<costList>
+								<Steel>24</Steel>
+								<WoodLog>2</WoodLog>
+								<ComponentIndustrial>2</ComponentIndustrial>
+							</costList>
+							<verbs>
+							  <li>
+								<verbClass>Verb_Shoot</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<defaultProjectile>Bullet_BB</defaultProjectile>
+								<warmupTime>1.8</warmupTime>
+								<range>17.9</range>
+								<soundCast>Shot_BBBolt</soundCast>
+								<soundCastTail>GunTail_Light</soundCastTail>
+								<muzzleFlashScale>0</muzzleFlashScale>
+							  </li>
+							</verbs>
+							<tools>
+								<li>
+									<label>stock</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+								</li>
+								<li>
+									<label>barrel</label>
+									<capacities>
+										<li>Poke</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+								</li>
+							</tools>
+						</ThingDef>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

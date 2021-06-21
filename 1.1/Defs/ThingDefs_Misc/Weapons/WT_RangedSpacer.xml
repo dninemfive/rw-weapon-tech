@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <!-- ====================== Gauss Pistol ====================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_48x28mmP</defName>
+    <label>gauss pistol slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Charge_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>7</damageAmountBase>
+      <armorPenetrationBase>0.82</armorPenetrationBase>
+      <stoppingPower>0.6</stoppingPower>
+      <speed>92</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseMakeableGunCR">
+    <defName>Gun_GaussPistol</defName>
+    <label>gauss pistol</label>
+    <description>A blowback gauss pistol. With powered-armour becoming an increasingly common sight on the battlefield, glitterworld militaries turned to gauss rifles in an attempt to reliably penetrate the dense armour plate. Despite being the pinnacle of firearms design, most gauss weapons still require a small powder charge to reliably fire catridges and cycle the action.\n\nEven taking into account it's higher than average weight, this pistol is still the sidearm of choice for many glitterworld officers.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/GaussPistol</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_ChargeRifle</soundInteract>
+    <statBases>
+      <WorkToMake>46000</WorkToMake>
+      <Mass>1.8</Mass>
+      <AccuracyTouch>0.88</AccuracyTouch>
+      <AccuracyShort>0.78</AccuracyShort>
+      <AccuracyMedium>0.50</AccuracyMedium>
+      <AccuracyLong>0.42</AccuracyLong>
+      <RangedWeapon_Cooldown>0.4</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>16</Steel>
+      <Plasteel>8</Plasteel>
+      <ComponentIndustrial>2</ComponentIndustrial>
+      <ComponentSpacer>1</ComponentSpacer>
+    </costList>
+	<weaponTags>
+		<li>NewMilitaryPistol</li>
+		<li>GaussPistol</li>
+		<li>Tech5Pistol</li>
+	</weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_48x28mmP</defaultProjectile>
+        <warmupTime>0.4</warmupTime>
+        <range>27.9</range>
+        <soundCast>Shot_ChargeRifle</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>grip</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+
+    <!-- ====================== Gauss Rifle ====================== -->
+  
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_48x51mmAR</defName>
+    <label>gauss rifle slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Charge_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>9</damageAmountBase>
+      <armorPenetrationBase>1</armorPenetrationBase>
+      <stoppingPower>0.8</stoppingPower>
+      <speed>108</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseMakeableGunCR">
+    <defName>Gun_ChargeRifle</defName>
+    <label>gauss rifle</label>
+    <description>A blowback gauss rifle. With powered-armour becoming an increasingly common sight on the battlefield, glitterworld militaries turned to gauss rifles in an attempt to reliably penetrate the dense armour plate. Despite being the pinnacle of firearms design, most gauss weapons still require a small powder charge to reliably fire catridges and cycle the action.\n\nEven with the weight and odd handling characteristics, this model of gauss rifle seems to have a favourable reputation with frontline soldiers.\n\nEquipped with a vertical foregrip and short-range targeting scope.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/GaussRifle</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_ChargeRifle</soundInteract>
+    <statBases>
+      <WorkToMake>70000</WorkToMake>
+      <Mass>6</Mass>
+      <AccuracyTouch>0.52</AccuracyTouch>
+      <AccuracyShort>0.80</AccuracyShort>
+      <AccuracyMedium>0.78</AccuracyMedium>
+      <AccuracyLong>0.74</AccuracyLong>
+      <RangedWeapon_Cooldown>1.4</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>24</Steel>
+      <Plasteel>14</Plasteel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+      <ComponentSpacer>1</ComponentSpacer>
+    </costList>
+	<weaponTags>
+		<li>NewMilitaryRifle</li>
+		<li>GaussCarbine</li>
+		<li>Tech5Rifle</li>
+	</weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_48x51mmAR</defaultProjectile>
+        <warmupTime>1.5</warmupTime>
+        <range>37.9</range>
+        <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+        <burstShotCount>3</burstShotCount>
+        <soundCast>Shot_ChargeRifle</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Poke</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+
+    <!-- ====================== Gauss Machine Gun ====================== -->
+  
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_45x51mmMG</defName>
+    <label>gauss rifle slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Charge_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>9</damageAmountBase>
+      <armorPenetrationBase>1.1</armorPenetrationBase>
+      <stoppingPower>0.8</stoppingPower>
+      <speed>114</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseMakeableGunCR">
+    <defName>Gun_GaussMachineGun</defName>
+    <label>gauss machine gun</label>
+    <description>A blowback gauss machine gun. With powered-armour becoming an increasingly common sight on the battlefield, glitterworld militaries turned to gauss rifles in an attempt to reliably penetrate the dense armour plate. Despite being the pinnacle of firearms design, most gauss weapons still require a small powder charge to reliably fire catridges and cycle the action.\n\nReliably feeding from a disintegrating metallic link, this machine gun inherits the same basic design as it's predecessors, save for the magnetic coils and power pack.\n\nEquipped with a bipod, vertical foregrip, and short-range targeting scope.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/GaussMachineGun</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_ChargeRifle</soundInteract>
+    <statBases>
+      <WorkToMake>74000</WorkToMake>
+      <Mass>6.6</Mass>
+      <AccuracyTouch>0.34</AccuracyTouch>
+      <AccuracyShort>0.58</AccuracyShort>
+      <AccuracyMedium>0.56</AccuracyMedium>
+      <AccuracyLong>0.50</AccuracyLong>
+      <RangedWeapon_Cooldown>2.4</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>24</Steel>
+      <Plasteel>14</Plasteel>
+      <ComponentIndustrial>4</ComponentIndustrial>
+      <ComponentSpacer>1</ComponentSpacer>
+    </costList>
+	<weaponTags>
+		<li>NewMilitaryMachineGun</li>
+		<li>GaussMachineGun</li>
+		<li>Tech5MachineGun</li>
+	</weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_45x51mmMG</defaultProjectile>
+        <warmupTime>1.5</warmupTime>
+        <range>37.9</range>
+        <ticksBetweenBurstShots>7</ticksBetweenBurstShots>
+        <burstShotCount>6</burstShotCount>
+        <soundCast>Shot_ChargeRifle</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Poke</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+
+    <!-- ====================== Gauss Sniper ====================== -->
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Bullet_45x51mmSR</defName>
+    <label>gauss rifle slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/Charge_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>11</damageAmountBase>
+      <armorPenetrationBase>1.4</armorPenetrationBase>
+      <stoppingPower>0.9</stoppingPower>
+      <speed>124</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseMakeableGunCR">
+    <defName>Gun_GaussSniper</defName>
+    <label>gauss sniper</label>
+    <description>A blowback gauss rifle. With powered-armour becoming an increasingly common sight on the battlefield, glitterworld militaries turned to gauss rifles in an attempt to reliably penetrate the dense armour plate. Despite being the pinnacle of firearms design, most gauss weapons still require a small powder charge to reliably fire catridges and cycle the action.\n\nBulky, heavy, and extremely power hungry, the Gauss Sniper has only one purpose: to launch projectiles as fast as conceivably possible. Whilst this guarantees penetration of almost any target, many frontline troops argue the practicality of such a cumbersome weapon.\n\nEquipped with a bipod and long-range targeting scope.</description>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/GaussSniper</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_ChargeRifle</soundInteract>
+    <statBases>
+      <WorkToMake>80000</WorkToMake>
+      <Mass>7.6</Mass>
+      <AccuracyTouch>0.30</AccuracyTouch>
+      <AccuracyShort>0.54</AccuracyShort>
+      <AccuracyMedium>0.96</AccuracyMedium>
+      <AccuracyLong>0.98</AccuracyLong>
+      <RangedWeapon_Cooldown>0.6</RangedWeapon_Cooldown>
+    </statBases>
+    <costList>
+      <Steel>28</Steel>
+      <Plasteel>16</Plasteel>
+      <ComponentIndustrial>3</ComponentIndustrial>
+      <ComponentSpacer>2</ComponentSpacer>
+    </costList>
+	<weaponTags>
+		<li>NewMilitarySniper</li>
+		<li>GaussSniper</li>
+		<li>Tech5Sniper</li>
+	</weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_45x51mmSR</defaultProjectile>
+        <warmupTime>2</warmupTime>
+        <range>49.9</range>
+        <soundCast>Shot_ChargeRifle</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>stock</label>
+        <capacities>
+          <li>Blunt</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Poke</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef>
+
+    <!-- ====================== Charge Lance ====================== -->
+
+  <!--ThingDef ParentName="BaseBullet">
+    <defName>Bullet_ChargeLance</defName>
+    <label>charge lance slug</label>
+    <graphicData>
+      <texPath>Things/Projectile/ChargeLanceShot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>30</damageAmountBase>
+      <stoppingPower>1.5</stoppingPower>
+      <speed>120</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseGunSpecial">
+    <defName>Gun_ChargeLance</defName>
+    <label>charge lance</label>
+    <description>A pulse-charged rail-assisted lance weapon. It fires a single large slug at high velocity, charging it with unstable energy as it leaves the acceleration rail.</description>
+    <techLevel>Spacer</techLevel>
+    <graphicData>
+      <texPath>Things/Item/Equipment/WeaponRanged/ChargeLance</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <soundInteract>Interact_ChargeLance</soundInteract>
+	<menuHidden>true</menuHidden>
+    <destroyOnDrop>true</destroyOnDrop>
+    <tradeability>None</tradeability>
+    <statBases>
+      <WorkToMake>80000</WorkToMake>
+      <Mass>8</Mass>
+      <AccuracyTouch>0.65</AccuracyTouch>
+      <AccuracyShort>0.85</AccuracyShort>
+      <AccuracyMedium>0.85</AccuracyMedium>
+      <AccuracyLong>0.80</AccuracyLong>
+      <RangedWeapon_Cooldown>2.7</RangedWeapon_Cooldown>
+    </statBases>
+    <recipeMaker>
+      <skillRequirements>
+        <Crafting>9</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <costList>
+      <Plasteel>60</Plasteel>
+      <ComponentSpacer>3</ComponentSpacer>
+    </costList>
+    <weaponTags Inherit="False">
+      <li>MechanoidGunMedium</li>
+    </weaponTags>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <hasStandardCommand>true</hasStandardCommand>
+        <defaultProjectile>Bullet_ChargeLance</defaultProjectile>
+        <warmupTime>1.7</warmupTime>
+        <range>36.9</range>
+        <soundCast>ChargeLance_Fire</soundCast>
+        <soundCastTail>GunTail_Heavy</soundCastTail>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+    <tools>
+      <li>
+        <label>barrel</label>
+        <capacities>
+          <li>Blunt</li>
+          <li>Poke</li>
+        </capacities>
+        <power>9</power>
+        <cooldownTime>2</cooldownTime>
+      </li>
+    </tools>
+  </ThingDef-->
+
+</Defs>

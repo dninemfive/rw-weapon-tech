@@ -1,0 +1,782 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <!-- ===================== Turret Base ========================= -->
+  
+	<ThingDef Name="BaseMannableTurret" ParentName="BuildingBase" Abstract="True">
+		<thingClass>Building_TurretGun</thingClass>
+		<uiIconScale>0.90</uiIconScale>
+		<hasInteractionCell>True</hasInteractionCell>
+		<interactionCellOffset>(0,0,-1)</interactionCellOffset>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<altitudeLayer>Building</altitudeLayer>
+		<stealable>false</stealable>
+		<rotatable>true</rotatable>
+		<thingCategories>
+			<li>BuildingsSecurity</li>
+		</thingCategories>
+		<statBases>
+			<Flammability>0.7</Flammability>
+			<Beauty>-20</Beauty>
+			<ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+		</statBases>
+		<tickerType>Normal</tickerType>
+		<comps>
+			<li Class="CompProperties_Forbiddable"/>
+			<li Class="CompProperties_Mannable">
+				<manWorkType>Violent</manWorkType>
+			</li>
+		</comps>
+		<passability>PassThroughOnly</passability>
+		<pathCost>50</pathCost>
+		<fillPercent>0.4</fillPercent>
+		<hasTooltip>true</hasTooltip>
+		<terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+		<building>
+			<ai_combatDangerous>true</ai_combatDangerous>
+		</building>
+		<placeWorkers>
+			<li>PlaceWorker_TurretTop</li>
+		</placeWorkers>
+		<designationHotKey>Misc2</designationHotKey>
+	</ThingDef>
+  
+	<ThingDef Name="BaseMannableTurretMakeable" ParentName="BaseMannableTurret" Abstract="True">
+		<designationCategory>Security</designationCategory>
+		<researchPrerequisites>
+			<li>Machining</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+    <!-- ===================== Gatling Gun Base ========================= -->
+
+	<ThingDef ParentName="BaseMannableTurretMakeable">
+		<defName>Turret_GatlingGunTurret</defName>
+		<label>mounted gatling gun</label>
+		<description>Gatling gun, mounted to a free-moving pedestal-style tripod, for better stability.\n\nUses a manually operated lever to feed rounds from a top mounted hopper.\n\nRequires steel to refurbish its barrels after heavy use.</description>
+		<uiIconPath>Things/Building/Security/TurretGatlingGun_MenuIcon</uiIconPath>
+		<graphicData>
+			<texPath>Things/Building/Security/PedestalBase</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>52000</WorkToBuild>
+			<Mass>44</Mass>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>1000</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>3</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Needs new barrels</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>18</costStuffCount>
+		<costList>
+			<Steel>102</Steel>
+			<WoodLog>1</WoodLog>
+			<ComponentIndustrial>3</ComponentIndustrial>
+		</costList>
+		<specialDisplayRadius>39.9</specialDisplayRadius>
+		<building>
+			<turretGunDef>Gun_GatlingGunTurret</turretGunDef>
+			<turretBurstWarmupTime>1.8</turretBurstWarmupTime>
+		</building>
+		<researchPrerequisites Inherit="False">
+			<li>MultibarrelWeapons</li>
+		</researchPrerequisites>
+	</ThingDef>
+
+    <!-- ===================== Gatling Gun Turret ========================= -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Bullet_Gatling</defName>
+		<label>minié ball</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>Bullet</damageDef>
+			<damageAmountBase>16</damageAmountBase>
+			<armorPenetrationBase>0.24</armorPenetrationBase>
+			<stoppingPower>1.5</stoppingPower>
+			<speed>82</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>Gun_GatlingGunTurret</defName>
+		<label>mounted gatling gun</label>
+		<description>Gatling gun mounted to a tripod.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/TurretGatlingGun_Top</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.30</AccuracyTouch>
+			<AccuracyShort>0.40</AccuracyShort>
+			<AccuracyMedium>0.60</AccuracyMedium>
+			<AccuracyLong>0.50</AccuracyLong>
+			<RangedWeapon_Cooldown>0</RangedWeapon_Cooldown>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>26</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<defaultProjectile>Bullet_Gatling</defaultProjectile>
+				<warmupTime>1.8</warmupTime>
+				<range>39.9</range>
+				<burstShotCount>4</burstShotCount>
+				<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+				<soundCast>Shot_RifleLight</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+    <!-- ===================== LMG Base ========================= -->
+
+	<ThingDef ParentName="BaseMannableTurretMakeable">
+		<defName>Turret_LMGTurret</defName>
+		<label>mounted LMG</label>
+		<description>Light machine gun, mounted to a mechanically adjustable tripod for better stability.\n\nManual operation of the tripod's traverse and elevation make tracking targets at close range impossible.\n\nRequires steel to refurbish its barrel after heavy use.</description>
+		<uiIconPath>Things/Building/Security/TurretStoner_MenuIcon</uiIconPath>
+		<graphicData>
+			<texPath>Things/Building/Security/LMGBase</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>2000</WorkToBuild>
+			<Mass>18</Mass>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>120</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>3</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Needs new barrel</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>12</costStuffCount>
+		<costList>
+			<Gun_LMG>1</Gun_LMG>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<specialDisplayRadius>39.9</specialDisplayRadius>
+		<building>
+			<turretGunDef>Gun_LMGTurret</turretGunDef>
+			<turretBurstWarmupTime>1.8</turretBurstWarmupTime>
+		</building>
+	</ThingDef>
+
+    <!-- ===================== LMG Turret ========================= -->
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>Gun_LMGTurret</defName>
+		<label>mounted LMG</label>
+		<description>Light machine gun mounted to a tripod.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/TurretStoner_Top</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.20</AccuracyTouch>
+			<AccuracyShort>0.60</AccuracyShort>
+			<AccuracyMedium>0.80</AccuracyMedium>
+			<AccuracyLong>0.70</AccuracyLong>
+			<RangedWeapon_Cooldown>0</RangedWeapon_Cooldown>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>4.8</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<defaultProjectile>Bullet_556x45mmR</defaultProjectile>
+				<warmupTime>1.8</warmupTime>
+				<minRange>5.9</minRange>
+				<range>39.9</range>
+				<burstShotCount>5</burstShotCount>
+				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+				<soundCast>Shot_RifleLight</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+    <!-- ===================== Vintage GPMG Base ========================= -->
+
+	<ThingDef ParentName="BaseMannableTurretMakeable">
+		<defName>Turret_VintageGPMGTurret</defName>
+		<label>mounted vintage GPMG</label>
+		<description>General pupose machine gun, mounted to a mechanically adjustable tripod for better stability.\n\nManual operation of the tripod's traverse and elevation make tracking targets at close range impossible.\n\nRequires steel to refurbish its barrel after heavy use.</description>
+		<uiIconPath>Things/Building/Security/TurretMG42_MenuIcon</uiIconPath>
+		<graphicData>
+			<texPath>Things/Building/Security/GPMGBase</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>2200</WorkToBuild>
+			<Mass>28.6</Mass>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>100</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>3</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Needs new barrel</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>14</costStuffCount>
+		<costList>
+			<Gun_VintageGPMG>1</Gun_VintageGPMG>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<specialDisplayRadius>39.9</specialDisplayRadius>
+		<building>
+			<turretGunDef>Gun_VintageGPMGTurret</turretGunDef>
+			<turretBurstWarmupTime>1.8</turretBurstWarmupTime>
+		</building>
+	</ThingDef>
+
+    <!-- ===================== Vintage GPMG Turret ========================= -->
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>Gun_VintageGPMGTurret</defName>
+    <label>mounted vintage GPMG</label>
+    <description>General pupose machine gun mounted to a tripod.</description>
+    <graphicData>
+      <texPath>Things/Building/Security/TurretMG42_Top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.20</AccuracyTouch>
+      <AccuracyShort>0.60</AccuracyShort>
+      <AccuracyMedium>0.80</AccuracyMedium>
+      <AccuracyLong>0.70</AccuracyLong>
+      <RangedWeapon_Cooldown>0</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>11.6</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Bullet_762x63mm</defaultProjectile>
+        <warmupTime>1.8</warmupTime>
+		<minRange>5.9</minRange>
+        <range>39.9</range>
+        <burstShotCount>4</burstShotCount>
+        <ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+        <soundCast>Shot_RifleMedium</soundCast>
+        <soundCastTail>GunTail_Medium</soundCastTail>
+        <muzzleFlashScale>12</muzzleFlashScale>
+        <consumeFuelPerShot>1</consumeFuelPerShot>
+      </li>
+    </verbs>
+  </ThingDef>
+
+    <!-- ===================== GPMG Base ========================= -->
+
+	<ThingDef ParentName="BaseMannableTurretMakeable">
+		<defName>Turret_GPMGTurret</defName>
+		<label>mounted GPMG</label>
+		<description>General pupose machine gun, mounted to a mechanically adjustable tripod for better stability.\n\nManual operation of the tripod's traverse and elevation make tracking targets at close range impossible.\n\nRequires steel to refurbish its barrel after heavy use.</description>
+		<uiIconPath>Things/Building/Security/TurretMG3_MenuIcon</uiIconPath>
+		<graphicData>
+			<texPath>Things/Building/Security/GPMGBase</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>2200</WorkToBuild>
+			<Mass>27.9</Mass>
+		</statBases>
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>100</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>3</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Needs new barrel</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>14</costStuffCount>
+		<costList>
+			<Gun_GPMG>1</Gun_GPMG>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<specialDisplayRadius>47.9</specialDisplayRadius>
+		<building>
+			<turretGunDef>Gun_GPMGTurret</turretGunDef>
+			<turretBurstWarmupTime>2.2</turretBurstWarmupTime>
+		</building>
+	</ThingDef>
+
+    <!-- ===================== GPMG Turret ========================= -->
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>Gun_GPMGTurret</defName>
+		<label>mounted GPMG</label>
+		<description>General pupose machine gun mounted to a tripod.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/TurretMG3_Top</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.20</AccuracyTouch>
+			<AccuracyShort>0.56</AccuracyShort>
+			<AccuracyMedium>0.82</AccuracyMedium>
+			<AccuracyLong>0.78</AccuracyLong>
+			<RangedWeapon_Cooldown>0</RangedWeapon_Cooldown>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>10.9</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<defaultProjectile>Bullet_762x51mm</defaultProjectile>
+				<warmupTime>2.2</warmupTime>
+				<minRange>5.9</minRange>
+				<range>47.9</range>
+				<burstShotCount>4</burstShotCount>
+				<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+				<soundCast>Shot_RifleMedium</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+    <!-- ===================== Minigun Base ========================= -->
+
+	<ThingDef ParentName="BaseMannableTurretMakeable">
+		<defName>Turret_MinigunTurret</defName>
+		<label>mounted minigun</label>
+		<description>Minigun, mounted to a free-moving pedestal-style tripod for better stability.\n\nAccuracy is somewhat poor due to the incredible muzzle flash, but it more than makes up for this in sheer volume of fire.\n\nRequires steel to refurbish its barrels after heavy use.</description>
+		<uiIconPath>Things/Building/Security/TurretMinigun_MenuIcon</uiIconPath>
+		<graphicData>
+			<texPath>Things/Building/Security/PedestalBase</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+		<generateCommonality>0.05</generateCommonality>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>2200</WorkToBuild>
+			<Mass>37</Mass>
+		</statBases>
+		<tradeTags>
+			<li>ExoticTurret</li>
+		</tradeTags>
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Shots until barrel change</fuelLabel>
+				<fuelGizmoLabel>Barrel durability</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>600</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>3</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Needs new barrels</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>18</costStuffCount>
+		<costList>
+			<Gun_Minigun>1</Gun_Minigun>
+			<ComponentIndustrial>1</ComponentIndustrial>
+		</costList>
+		<specialDisplayRadius>34.9</specialDisplayRadius>
+		<building>
+			<turretGunDef>Gun_MinigunTurret</turretGunDef>
+			<turretBurstWarmupTime>2.5</turretBurstWarmupTime>
+		</building>
+	</ThingDef>
+
+    <!-- ===================== Minigun Turret ========================= -->
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>Gun_MinigunTurret</defName>
+		<label>mounted minigun</label>
+		<description>Minigun mounted to a tripod.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/TurretMinigun_Top</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.30</AccuracyTouch>
+			<AccuracyShort>0.40</AccuracyShort>
+			<AccuracyMedium>0.35</AccuracyMedium>
+			<AccuracyLong>0.30</AccuracyLong>
+			<RangedWeapon_Cooldown>0</RangedWeapon_Cooldown>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>19</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<defaultProjectile>Bullet_556x45mmR</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<range>34.9</range>
+				<burstShotCount>15</burstShotCount>
+				<ticksBetweenBurstShots>1</ticksBetweenBurstShots>
+				<soundCast>Shot_Minigun</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>12</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+    <!-- ===================== GMG Base ========================= -->
+
+	<ThingDef ParentName="BaseMannableTurret">
+		<defName>Turret_GMGTurret</defName>
+		<label>mounted grenade machine gun</label>
+		<description>Grenade machine gun, mounted to a free-moving pedestal-style tripod for better stability.\n\nRequires chemfuel to reload after heavy use.</description>
+		<uiIconPath>Things/Building/Security/TurretGMG_MenuIcon</uiIconPath>
+		<graphicData>
+			<texPath>Things/Building/Security/PedestalBase</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+		<generateCommonality>0.05</generateCommonality>
+		<statBases>
+			<MaxHitPoints>140</MaxHitPoints>
+			<WorkToBuild>67000</WorkToBuild>
+			<Mass>40</Mass>
+		</statBases>
+		<tradeTags>
+			<li>ExoticTurret</li>
+		</tradeTags>
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Rounds Remaining</fuelLabel>
+				<fuelGizmoLabel>Rounds Remaining</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>20</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>0.2</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Needs ammunition</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+			<li Class="CompProperties_Explosive">
+				<explosiveRadius>5.6</explosiveRadius>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<requiredDamageTypeToExplode>Flame</requiredDamageTypeToExplode>
+			</li>
+		</comps>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>18</costStuffCount>
+		<costList>
+			<Steel>70</Steel>
+			<ComponentIndustrial>5</ComponentIndustrial>
+			<Chemfuel>100</Chemfuel>
+		</costList>
+		<specialDisplayRadius>29.9</specialDisplayRadius>
+		<building>
+			<turretGunDef>Gun_GMGTurret</turretGunDef>
+			<turretBurstWarmupTime>2.5</turretBurstWarmupTime>
+		</building>
+	</ThingDef>
+
+    <!-- ===================== GMG Turret ========================= -->
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>Gun_GMGTurret</defName>
+		<label>mounted grenade machine gun</label>
+		<description>Grenade machine gun mounted to a tripod.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/TurretGMG_Top</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.30</AccuracyTouch>
+			<AccuracyShort>0.40</AccuracyShort>
+			<AccuracyMedium>0.40</AccuracyMedium>
+			<AccuracyLong>0.40</AccuracyLong>
+			<RangedWeapon_Cooldown>0</RangedWeapon_Cooldown>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>29</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<defaultProjectile>Bullet_GrenadeLauncher</defaultProjectile>
+				<warmupTime>2.5</warmupTime>
+				<minRange>7.9</minRange>
+				<range>29.9</range>
+				<forcedMissRadius>1.9</forcedMissRadius>
+				<burstShotCount>3</burstShotCount>
+				<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
+				<soundCast>Shot_GrenadeLauncher</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>6</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+    <!-- ===================== Anti-Tank Rifle Base ========================= -->
+
+	<ThingDef ParentName="BaseMannableTurret">
+		<defName>Turret_AntiTankTurret</defName>
+		<label>mounted anti-tank rifle</label>
+		<description>Anti-tank rifle, mounted to a free-moving ski-style bipod for better stability.\n\nOne of the largest mass-produced rifles still in existence, the anti-tank rifle is the perfect solution for rowdy neighbours and armour-clad invaders alike.\n\nRequires chemfuel to reload after heavy use.</description>
+		<uiIconPath>Things/Building/Security/TurretLahti_MenuIcon</uiIconPath>
+		<graphicData>
+			<texPath>Things/Building/Security/ATRifleBase</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(3,3)</drawSize>
+			<damageData>
+				<rect>(0.2,0.2,0.6,0.6)</rect>
+			</damageData>
+			<shadowData>
+				<volume>(0.27,0.25,0.27)</volume>
+				<offset>(0,0,0)</offset>
+			</shadowData>
+		</graphicData>
+		<generateCommonality>0.05</generateCommonality>
+		<statBases>
+			<ShootingAccuracyTurret>0.98</ShootingAccuracyTurret>
+			<MaxHitPoints>160</MaxHitPoints>
+			<WorkToBuild>76000</WorkToBuild>
+			<Mass>49.5</Mass>
+		</statBases>
+		<tradeTags>
+			<li>ExoticTurret</li>
+		</tradeTags>
+		<comps>
+			<li Class="CompProperties_Refuelable">
+				<fuelLabel>Rounds Remaining</fuelLabel>
+				<fuelGizmoLabel>Rounds Remaining</fuelGizmoLabel>
+				<fuelFilter>
+					<thingDefs>
+						<li>Chemfuel</li>
+					</thingDefs>
+				</fuelFilter>
+				<fuelCapacity>10</fuelCapacity>
+				<initialFuelPercent>1</initialFuelPercent>
+				<autoRefuelPercent>0.75</autoRefuelPercent>
+				<showFuelGizmo>true</showFuelGizmo>
+				<minimumFueledThreshold>1</minimumFueledThreshold>
+				<fuelMultiplier>1</fuelMultiplier>
+				<factorByDifficulty>true</factorByDifficulty>
+				<consumeFuelOnlyWhenUsed>true</consumeFuelOnlyWhenUsed>
+				<outOfFuelMessage>Cannot shoot: Needs ammunition</outOfFuelMessage>
+				<fuelIconPath>UI/Overlays/Barrel</fuelIconPath>
+			</li>
+		</comps>
+		<stuffCategories>
+			<li>Metallic</li>
+		</stuffCategories>
+		<costStuffCount>20</costStuffCount>
+		<costList>
+			<Steel>72</Steel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<Chemfuel>10</Chemfuel>
+		</costList>
+		<specialDisplayRadius>49.9</specialDisplayRadius>
+		<building>
+			<turretGunDef>Gun_AntiTankRifleTurret</turretGunDef>
+			<turretBurstWarmupTime>3.8</turretBurstWarmupTime>
+		</building>
+	</ThingDef>
+
+    <!-- =====================  Anti-Tank Rifle Turret ========================= -->
+
+	<ThingDef ParentName="BaseBullet">
+		<defName>Bullet_Cannon</defName>
+		<label>cannon bullet</label>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Big</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>WT_HEBullet</damageDef>
+			<damageAmountBase>82</damageAmountBase>
+			<armorPenetrationBase>2</armorPenetrationBase>
+			<stoppingPower>4.4</stoppingPower>
+			<speed>94</speed>
+		</projectile>
+	</ThingDef>
+
+	<ThingDef ParentName="BaseWeaponTurret">
+		<defName>Gun_AntiTankRifleTurret</defName>
+		<label>mounted anti-tank rifle</label>
+		<description>Anti-tank rifle mounted to a bipod.</description>
+		<graphicData>
+			<texPath>Things/Building/Security/TurretLahti_Top</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<statBases>
+			<AccuracyTouch>0.42</AccuracyTouch>
+			<AccuracyShort>0.68</AccuracyShort>
+			<AccuracyMedium>0.98</AccuracyMedium>
+			<AccuracyLong>0.92</AccuracyLong>
+			<RangedWeapon_Cooldown>0</RangedWeapon_Cooldown>
+			<DeteriorationRate>0</DeteriorationRate>
+			<Mass>49.5</Mass>
+			<Flammability>0</Flammability>
+		</statBases>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<defaultProjectile>Bullet_Cannon</defaultProjectile>
+				<warmupTime>3.8</warmupTime>
+				<range>49.9</range>
+				<soundCast>Shot_Cannon</soundCast>
+				<soundCastTail>GunTail_Heavy</soundCastTail>
+				<muzzleFlashScale>22</muzzleFlashScale>
+				<consumeFuelPerShot>1</consumeFuelPerShot>
+			</li>
+		</verbs>
+	</ThingDef>
+
+</Defs>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ====================== Replace akimbo weapons ====================== -->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Dual Wield</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "Gun_AkimboMachinePistols"]</xpath>
+					<value>
+						<ThingDef ParentName="BaseGunUnique">
+							<defName>Gun_AkimboMachinePistols</defName>
+							<label>cloned machine pistol</label>
+							<description>Ancient pattern, short-recoil, burst-fire pistol.\n\nUpon closer inspection, this pistol is quite obviously a clone of a genuine machine pistol, using a service pistol as the starting point.\n\nFires pistol calibre cartridges.</description>
+							<graphicData>
+								<texPath>Things/Item/Equipment/WeaponRanged/M93Raffica</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<soundInteract>Interact_Autopistol</soundInteract>
+							<generateCommonality>0.1</generateCommonality>
+							<statBases>
+								<WorkToMake>44000</WorkToMake>
+								<Mass>1.3</Mass>
+								<AccuracyTouch>0.88</AccuracyTouch>
+								<AccuracyShort>0.62</AccuracyShort>
+								<AccuracyMedium>0.34</AccuracyMedium>
+								<AccuracyLong>0.20</AccuracyLong>
+								<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
+							</statBases>
+							<costList>
+								<Steel>23</Steel>
+								<ComponentIndustrial>3</ComponentIndustrial>
+							</costList>
+							<weaponTags>
+								<li>NewMilitaryPistol</li>
+								<li>Tech4Pistol</li>
+								<li>IndustrialGunAdvanced</li>
+								<li>Shield_Sidearm</li>
+							</weaponTags>
+							<verbs>
+								<li>
+									<verbClass>Verb_Shoot</verbClass>
+									<hasStandardCommand>true</hasStandardCommand>
+									<defaultProjectile>Bullet_9x19mm</defaultProjectile>
+									<warmupTime>0.4</warmupTime>
+									<range>17.9</range>
+									<burstShotCount>3</burstShotCount>
+									<ticksBetweenBurstShots>3</ticksBetweenBurstShots>
+									<soundCast>Shot_PistolLight</soundCast>
+									<soundCastTail>GunTail_Light</soundCastTail>
+									<muzzleFlashScale>9</muzzleFlashScale>
+								</li>
+							</verbs>
+							<tools>
+								<li>
+									<label>grip</label>
+									<capacities>
+									<li>Blunt</li>
+									</capacities>
+									<power>9</power>
+									<cooldownTime>2</cooldownTime>
+								</li>
+							</tools>
+						</ThingDef>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "Gun_AkimboLeverActionShotguns"]</xpath>
+					<value>
+						<ThingDef ParentName="BaseGunUnique">
+							<defName>Gun_AkimboLeverActionShotguns</defName>
+							<label>sawn-off lever-action shotgun</label>
+							<description>Ancient pattern lever-action shotgun, cut down to a more manageable size.\n\nMany believe that if paired up, the combined shotguns would grant the user wonderous power; incredible range, extreme damage, and seemingly limitless ammunition. Ridiculous.\n\nFires your run-of-the-mill buckshot.</description>
+							<graphicData>
+								<texPath>Things/Item/Equipment/WeaponRanged/1887Short</texPath>
+								<graphicClass>Graphic_Single</graphicClass>
+							</graphicData>
+							<soundInteract>Interact_Shotgun</soundInteract>
+							<generateCommonality>0.1</generateCommonality>
+							<statBases>
+								<WorkToMake>50000</WorkToMake>
+								<Mass>3.6</Mass>
+								<AccuracyTouch>0.58</AccuracyTouch>
+								<AccuracyShort>0.70</AccuracyShort>
+								<AccuracyMedium>0.28</AccuracyMedium>
+								<AccuracyLong>0.02</AccuracyLong>
+								<RangedWeapon_Cooldown>0.8</RangedWeapon_Cooldown>
+							</statBases>
+							<costList>
+								<Steel>27</Steel>
+								<WoodLog>2</WoodLog>
+								<ComponentIndustrial>3</ComponentIndustrial>
+							</costList>
+							<weaponTags Inherit="False">
+								<li>SIBGun</li>
+							</weaponTags>
+							<tradeTags>
+								<li>Western</li>
+							</tradeTags>
+							<verbs>
+								<li>
+									<verbClass>Verb_Shoot</verbClass>
+									<hasStandardCommand>true</hasStandardCommand>
+									<defaultProjectile>Bullet_12g</defaultProjectile>
+									<warmupTime>0.7</warmupTime>
+									<range>15.9</range>
+									<soundCast>Shot_ShotgunLever</soundCast>
+									<muzzleFlashScale>14</muzzleFlashScale>
+								</li>
+							</verbs>
+							<tools>
+								<li>
+									<label>magazine tube</label>
+									<capacities>
+										<li>Blunt</li>
+									</capacities>
+									<power>6</power>
+									<cooldownTime>1</cooldownTime>
+								</li>
+							</tools>
+						</ThingDef>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

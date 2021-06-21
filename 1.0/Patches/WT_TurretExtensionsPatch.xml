@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+	<!-- ====================== Integrate new features ====================== -->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>[XND] Turret Extensions</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<success>Always</success>
+			<operations>
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[@Name="BaseMannableTurret"]</xpath>
+					<value>
+						<li Class="TurretExtensions.TurretFrameworkExtension">
+							<useMannerShootingAccuracy>true</useMannerShootingAccuracy>
+							<useMannerAimingDelayFactor>true</useMannerAimingDelayFactor>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[@Name="BaseMannableTurret"]/comps</xpath>
+					<value>
+						<li Class="TurretExtensions.CompProperties_SmartForcedTarget"/>
+					</value>
+				</li>
+
+	<!-- ====================== Add weapon upgrades ====================== -->
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "Turret_GatlingGunTurret"]/comps</xpath>
+					<value>
+						<li Class="TurretExtensions.CompProperties_Upgradable">
+							<description>Increase accuracy by replacing the standard barrels with longer variants, and increase rate of fire by tuning gear sizes.</description>
+							<costList>
+								<Steel>40</Steel>
+								<ComponentIndustrial>1</ComponentIndustrial>
+							</costList>
+							<researchPrerequisites>
+								<li>MultibarrelWeapons</li>
+							</researchPrerequisites>
+							<workToUpgrade>2800</workToUpgrade>
+							<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+							<turretGunDef>Gun_UpgradedGatlingGunTurret</turretGunDef>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "Turret_LMGTurret"]/comps</xpath>
+					<value>
+						<li Class="TurretExtensions.CompProperties_Upgradable">
+							<description>Increase accuracy and durability by replacing the standard barrel with a longer, heavier profile variant, and increase rate of fire by using a lighter bolt.</description>
+							<costList>
+								<Steel>10</Steel>
+								<ComponentIndustrial>1</ComponentIndustrial>
+							</costList>
+							<researchPrerequisites>
+								<li>PrecisionRifling</li>
+							</researchPrerequisites>
+							<workToUpgrade>2000</workToUpgrade>
+							<constructionSkillPrerequisite>5</constructionSkillPrerequisite>
+							<barrelDurabilityFactor>2</barrelDurabilityFactor>
+							<turretGunDef>Gun_UpgradedLMGTurret</turretGunDef>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "Turret_VintageGPMGTurret"]/comps</xpath>
+					<value>
+						<li Class="TurretExtensions.CompProperties_Upgradable">
+							<description>Increase durability by replacing the standard barrel with a heavier profile variant, and increase rate of fire by using a lighter bolt in tandem with a stiffer recoil spring.</description>
+							<costList>
+								<Steel>30</Steel>
+								<ComponentIndustrial>1</ComponentIndustrial>
+							</costList>
+							<researchPrerequisites>
+								<li>PrecisionRifling</li>
+							</researchPrerequisites>
+							<workToUpgrade>2200</workToUpgrade>
+							<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+							<barrelDurabilityFactor>2</barrelDurabilityFactor>
+							<turretGunDef>Gun_UpgradedVintageGPMGTurret</turretGunDef>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "Turret_GPMGTurret"]/comps</xpath>
+					<value>
+						<li Class="TurretExtensions.CompProperties_Upgradable">
+							<description>Increase durability by replacing the standard barrel with a heavier profile variant, and increase rate of fire by using a lighter bolt in tandem with a stiffer return spring.</description>
+							<costList>
+								<Steel>30</Steel>
+								<ComponentIndustrial>1</ComponentIndustrial>
+							</costList>
+							<researchPrerequisites>
+								<li>PrecisionRifling</li>
+							</researchPrerequisites>
+							<workToUpgrade>2200</workToUpgrade>
+							<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+							<barrelDurabilityFactor>2</barrelDurabilityFactor>
+							<turretGunDef>Gun_UpgradedGPMGTurret</turretGunDef>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "Turret_MinigunTurret"]/comps</xpath>
+					<value>
+						<li Class="TurretExtensions.CompProperties_Upgradable">
+							<description>Increase accuracy by replacing the standard barrels with longer variants.</description>
+							<costList>
+								<Steel>40</Steel>
+								<ComponentIndustrial>2</ComponentIndustrial>
+							</costList>
+							<researchPrerequisites>
+								<li>BrushlessMotors</li>
+							</researchPrerequisites>
+							<workToUpgrade>3200</workToUpgrade>
+							<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+							<turretGunDef>Gun_UpgradedMinigunTurret</turretGunDef>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "Turret_GMGTurret"]/comps</xpath>
+					<value>
+						<li Class="TurretExtensions.CompProperties_Upgradable">
+							<description>Increase accuracy by replacing the standard barrel with a longer variant, and extend trigger time by using a larger ammunition can.</description>
+							<costList>
+								<Steel>30</Steel>
+							</costList>
+							<researchPrerequisites>
+								<li>PrecisionRifling</li>
+								<li>GrenadeLaunchers</li>
+							</researchPrerequisites>
+							<workToUpgrade>2200</workToUpgrade>
+							<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+							<barrelDurabilityFactor>2</barrelDurabilityFactor>
+							<turretGunDef>Gun_UpgradedGMGTurret</turretGunDef>
+						</li>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName = "Turret_AntiTankTurret"]/comps</xpath>
+					<value>
+						<li Class="TurretExtensions.CompProperties_Upgradable">
+							<description>Convert the trigger mechanism to enable fully-automatic fire, and extend trigger time by using extended magazines.</description>
+							<costList>
+								<Steel>30</Steel>
+								<ComponentIndustrial>1</ComponentIndustrial>
+							</costList>
+							<researchPrerequisites>
+								<li>PrecisionRifling</li>
+							</researchPrerequisites>
+							<workToUpgrade>2800</workToUpgrade>
+							<constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+							<barrelDurabilityFactor>2</barrelDurabilityFactor>
+							<turretGunDef>Gun_UpgradedAntiTankRifleTurret</turretGunDef>
+						</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+    </Operation>
+
+</Patch>

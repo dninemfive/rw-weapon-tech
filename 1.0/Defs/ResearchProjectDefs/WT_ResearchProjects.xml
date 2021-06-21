@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ResearchTabDef>
+		<defName>WeaponDiversityResearchTab</defName>
+		<label>Weapon Tech</label>
+	</ResearchTabDef>
+
+	<ResearchProjectDef>
+		<defName>CompositeArmour</defName>
+		<label>composite armor</label>
+		<description>Craft composite armour plates for use in militaresque plate carriers.</description>
+		<baseCost>1400</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>FlakArmor</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>4</researchViewX>
+		<researchViewY>2.5</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>Gunsmithing</defName>
+		<label>gunpowder</label>
+		<description>Allows for the creation of muzzle-loading firearms via a smithy or machining table.</description>
+		<baseCost>600</baseCost>
+		<techLevel>Medieval</techLevel>
+		<prerequisites>
+			<li>Smithing</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>0</researchViewX>
+		<researchViewY>1.5</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>BlowbackOperation</defName>
+		<label>breech-loading</label>
+		<description>Significantly increase rate of fire by learning how to make breech-loading firearms at a smithy or machining table.</description>
+		<baseCost>600</baseCost>
+		<techLevel>Medieval</techLevel>
+		<prerequisites>
+			<li>Gunsmithing</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>1</researchViewX>
+		<researchViewY>1.5</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>GasOperation</defName>
+		<label>repeating actions</label>
+		<description>Build more advanced, repeating firearms at a smithy or machining table.</description>
+		<baseCost>800</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>BlowbackOperation</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>2</researchViewX>
+		<researchViewY>1.5</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>Optics</defName>
+		<label>optics</label>
+		<description>Learn how to manufacture magnified optics for rifles.</description>
+		<baseCost>600</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>GasOperation</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>3</researchViewX>
+		<researchViewY>2</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>PrecisionRifling</defName>
+		<label>self-loading actions</label>
+		<description>Learn how to create complex self-loading guns at a machining table.</description>
+		<baseCost>1400</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>GasOperation</li>
+			<li>Machining</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>4</researchViewX>
+		<researchViewY>1.5</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>ChargedShot</defName>
+		<label>magnetically assisted projectiles</label>
+		<description>Take advantage of magnetically assisted projectiles, designed for maximum speed and penetration. Allows you to build gauss weapons at a fabrication bench.</description>
+		<baseCost>1800</baseCost>
+		<techLevel>Spacer</techLevel>
+		<prerequisites>
+			<li>PrecisionRifling</li>
+			<li>Optics</li>
+			<li>Batteries</li>
+		</prerequisites>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<requiredResearchFacilities>
+			<li>MultiAnalyzer</li>
+		</requiredResearchFacilities>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>5</researchViewX>
+		<researchViewY>1.5</researchViewY>
+	</ResearchProjectDef>
+	 
+	<ResearchProjectDef>
+		<defName>Fuses</defName>
+		<label>fuses</label>
+		<description>Learn to make chemical and mechanical fuses for use in explosives. Allows the crafting of frag grenades and mortar shells at a smithy or machining table.</description>
+		<baseCost>600</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>Gunsmithing</li>
+			<li>Machining</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>2</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>NNEMP</defName>
+		<label>NNEMP</label>
+		<description>Use a non-nuclear electromagnetic pulse (NNEMP) to disable any electronic equipment within range. Construct EMP grenades and shells at a machining table.</description>
+		<baseCost>600</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>Fuses</li>
+			<li>MicroelectronicsBasics</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>4</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>GrenadeLaunchers</defName>
+		<label>grenade launchers</label>
+		<description>Construct glorified metal tubes at a machining table, to fire large explosives from.</description>
+		<baseCost>400</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>Fuses</li>
+			<li>GasOperation</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>3</researchViewX>
+		<researchViewY>0.5</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>SmartMunitions</defName>
+		<label>smart munitions</label>
+		<description>Learn how to utilize some of the circuitry already found in EMP grenades to create a programmable "smart" grenade launcher.</description>
+		<baseCost>700</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>PrecisionRifling</li>
+			<li>GrenadeLaunchers</li>
+			<li>NNEMP</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>5</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>SolidRocketMotors</defName>
+		<label>solid rocket motors</label>
+		<description>Increase the effective range and speed of your warheads by seating them on solid rocket motors.</description>
+		<baseCost>1000</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>GrenadeLaunchers</li>
+		</prerequisites>
+		<requiredResearchBuilding>HiTechResearchBench</requiredResearchBuilding>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>4</researchViewX>
+		<researchViewY>0.5</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>MultibarrelWeapons</defName>
+		<label>multibarrel weapons</label>
+		<description>Learn how to construct hand-cranked, multibarrel gatling guns.</description>
+		<baseCost>500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>GasOperation</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>3</researchViewX>
+		<researchViewY>1</researchViewY>
+	</ResearchProjectDef>
+
+	<ResearchProjectDef>
+		<defName>BrushlessMotors</defName>
+		<label>brushless motors</label>
+		<description>Using a brushless electric motor in combination with the gatling idea makes the dream of firing 6000 rounds per-minute a reality, in the form of the formidable Minigun.</description>
+		<baseCost>800</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>MultibarrelWeapons</li>
+			<li>MicroelectronicsBasics</li>
+		</prerequisites>
+		<tab>WeaponDiversityResearchTab</tab>
+		<researchViewX>4</researchViewX>
+		<researchViewY>1</researchViewY>
+	</ResearchProjectDef>
+
+</Defs>
